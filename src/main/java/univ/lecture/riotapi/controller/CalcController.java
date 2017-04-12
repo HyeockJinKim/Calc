@@ -1,32 +1,20 @@
-package univ.lecture.riotapi.controller;
-
 import lombok.extern.log4j.Log4j;
+import univ.lecture.riotapi.model.CalcApp;
+import univ.lecture.riotapi.model.Result;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import univ.lecture.riotapi.model.CalcApp;
-import univ.lecture.riotapi.model.Result;
-import univ.lecture.riotapi.model.Operator;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
+import java.io.*;
+import java.net.*;
+
 
 @RestController
 @RequestMapping("/api/v1")
@@ -34,10 +22,10 @@ import java.net.URL;
 public class CalcController {
     @Autowired
     private RestTemplate restTemplate;
-
-    @RequestMapping(value = "/calc", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    
     @ResponseBody
-    public Result Calculator(@RequestParam(value="token[]",required=false,defaultValue="0") String token[]) throws IOException {
+    @RequestMapping(value = "/calc", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Result Calculator(@RequestBody String[] token) throws IOException {
         
     	final String endpoint = "http://52.79.162.52:8080/api/v1/answer";
     	
