@@ -11,7 +11,7 @@
 		<version>1.4.0.RELEASE</version>
 	</parent>
 
-	<artifactId>riotapi</artifactId>
+	<artifactId>Calculate</artifactId>
 	<groupId>univ.lecture</groupId>
 	<name>Sample</name>
 	<description>application for what</description>
